@@ -13,7 +13,7 @@ import org.apache.commons.cli.ParseException;
 
 public class Main {
 
-    private static final java.util.logging.Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
