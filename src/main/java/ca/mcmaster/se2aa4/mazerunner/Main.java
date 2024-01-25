@@ -9,7 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
-
+        ReadFile read = new ReadFile(args);
+        Maze maze = new Maze(read.getInputFile());
+        maze.generate();
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
