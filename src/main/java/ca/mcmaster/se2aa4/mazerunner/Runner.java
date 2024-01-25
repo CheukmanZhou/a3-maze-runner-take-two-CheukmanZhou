@@ -4,4 +4,8 @@ public class Runner {
     public void navigate() {
 
     }
+
+    public void checkPath() {
+        
+    }
 }

@@ -12,6 +12,8 @@ public class Maze {
     private int length;
     private final String inputFile;
     private String[][] maze;
+    private String start;
+    private String end;
 
     public Maze(String inputFile) {
         this.inputFile = inputFile;
@@ -36,5 +38,13 @@ public class Maze {
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
+    }
+
+    public void findStart() {
+
+    }
+
+    public void findEnd() {
+
     }
 }
