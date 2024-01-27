@@ -5,7 +5,7 @@ public class Runner {
     protected int y;
     protected char currentDirection;
 
-    //move() moves the runner forward in the direction that it is facing
+    //Moves the runner forward in the direction that it is facing
     protected void move() {
         //Move North
         if (currentDirection == 'N') {
@@ -70,5 +70,40 @@ public class Runner {
         else {
             currentDirection = 'E';
         }
+    }
+
+    //Checks in front depending on direction
+    protected boolean check(String[][] maze) {
+        boolean clear = false;
+
+        //Check North
+        if (currentDirection == 'N') {
+            if (maze[y + 1][x].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        //Check South
+        else if (currentDirection == 'S') {
+            if (maze[y - 1][x].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        //Check East
+        else if (currentDirection == 'E') {
+            if (maze[y][x + 1].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        //Check West
+        else {
+            if (maze[y][x - 1].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        return clear;
     }
 }
