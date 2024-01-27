@@ -11,6 +11,8 @@ public class Main {
         ReadFile read = new ReadFile(args);
         Maze maze = new Maze(read.getInputFile());
         maze.generate();
+        Runner runner = new Runner(maze);
+        RightHand rightHand = new RightHand(runner, maze);
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");

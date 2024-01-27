@@ -5,14 +5,14 @@ public class Runner {
     private int y;
     private char currentDirection;
 
-    public Runner(int startX, int startY) {
-        x = startX;
-        y = startY;
+    public Runner(Maze maze) {
+        x = maze.getStartX();
+        y = maze.getStartY();
         currentDirection = 'E';
     }
 
     //move() moves the runner forward in the direction that it is facing
-    public void move() {
+    private void move() {
         //Move North
         if (currentDirection == 'N') {
             y++;
@@ -34,13 +34,11 @@ public class Runner {
         }
     }
 
-    //turns the runner (changes direction)
-    public void turn() {
+    private void turnRight() {
 
     }
 
-    //Has the if statements changing the current direction based on where the runner turns
-    public void direction() {
+    private void turnLeft() {
 
     }
 }
