@@ -55,7 +55,8 @@ public class Maze {
                 System.out.println();
             }
 
-            System.out.println(startX + ", " + startY);
+            System.out.println("Start Position: " + startX + ", " + startY);
+            System.out.println("End Position: " + endX + ", " + endY);
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
@@ -105,6 +106,13 @@ public class Maze {
     }
 
     private void findEnd() {
+        endX = width - 1;
 
+        for (int i = 0; i < height; i++) {
+            if (maze[i][width - 1].equals(" ")) {
+                endY = i;
+                break;
+            }
+        }
     }
 }
