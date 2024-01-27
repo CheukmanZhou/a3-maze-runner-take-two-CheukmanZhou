@@ -119,4 +119,24 @@ public class Maze {
             }
         }
     }
+
+    public String[][] getMaze() {
+        return maze;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getEndX() {
+        return endX;
+    }
+
+    public int getEndY() {
+        return endY;
+    }
 }
