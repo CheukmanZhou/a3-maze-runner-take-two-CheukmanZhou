@@ -57,6 +57,10 @@ public class Maze {
 
             System.out.println("Start Position: " + startX + ", " + startY);
             System.out.println("End Position: " + endX + ", " + endY);
+
+            //////////////
+
+
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
