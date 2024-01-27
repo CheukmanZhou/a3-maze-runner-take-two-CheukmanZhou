@@ -12,10 +12,10 @@ public class Maze {
     private int height;
     private final String inputFile;
     private String[][] maze;
-    private String startX;
-    private String startY;
-    private String endX;
-    private String endY;
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
 
     public Maze(String inputFile) {
         this.inputFile = inputFile;
@@ -44,6 +44,9 @@ public class Maze {
                 }
             }
 
+            findStart();
+            findEnd();
+
             ////////////Tester
             for (int row = 0; row < height; row++) {
                 for (int col = 0; col < width; col++) {
@@ -51,12 +54,14 @@ public class Maze {
                 }
                 System.out.println();
             }
+
+            System.out.println(startX + ", " + startY);
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
     }
 
-    public int findWidth() {
+    private int findWidth() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             String line;
@@ -70,7 +75,7 @@ public class Maze {
         }
     }
 
-    public int findHeight() {
+    private int findHeight() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             String line;
@@ -88,11 +93,18 @@ public class Maze {
         }
     }
 
-    public void findStart() {
+    private void findStart() {
+        startX = 0;
 
+        for (int i = 0; i < height; i++) {
+            if (maze[i][0].equals(" ")) {
+                startY = i;
+                break;
+            }
+        }
     }
 
-    public void findEnd() {
+    private void findEnd() {
 
     }
 }
