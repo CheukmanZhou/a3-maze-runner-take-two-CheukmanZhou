@@ -18,11 +18,25 @@ public class RightHand extends Runner implements Algorithm {
 
         while (x != maze.getEndX()) {
             turnRight();
-
-
+            canonicalPath = canonicalPath + "R";
             
-        }
+            if (check(mazeLayout) == true) {
+                move();
+                canonicalPath = canonicalPath + "F";
+            }
 
+            else {
+                while (true) {
+                    turnLeft();
+                    canonicalPath = canonicalPath + "L";
+                    if (check(mazeLayout) == true) {
+                        move();
+                        canonicalPath = canonicalPath + "F";
+                        break;
+                    }
+                }
+            }
+        }
 
         return canonicalPath;
     }
