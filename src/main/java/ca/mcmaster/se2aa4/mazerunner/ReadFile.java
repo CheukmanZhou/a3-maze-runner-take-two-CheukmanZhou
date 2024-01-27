@@ -12,7 +12,7 @@ public class ReadFile {
     private String inputFile;
     private String path;
 
-    public ReadFile(String[] args) {
+    ReadFile(String[] args) {
         Options options = new Options();
         options.addOption("i", true, "Input File");
         options.addOption("p", true, "Path");

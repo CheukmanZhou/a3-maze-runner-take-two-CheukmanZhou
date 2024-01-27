@@ -28,6 +28,7 @@ public class Maze {
         maze = new String[width][height];
 
         logger.info("**** Reading the maze from file " + inputFile);
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             String line;
