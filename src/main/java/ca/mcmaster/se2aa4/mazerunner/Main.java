@@ -12,6 +12,7 @@ public class Main {
         Maze maze = new Maze(read.getInputFile());
         maze.generate();
         RightHand rightHand = new RightHand(maze);
+        System.out.println(rightHand.navigate());
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
