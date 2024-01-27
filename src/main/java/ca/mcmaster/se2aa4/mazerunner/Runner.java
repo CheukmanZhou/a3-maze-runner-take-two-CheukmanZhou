@@ -1,32 +1,109 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class Runner {
-    private int x;
-    private int y;
-    private char currentDirection;
-    private String path;
+    protected int x;
+    protected int y;
+    protected char currentDirection;
 
-    //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until u can move forward
-    public void navigate() {
+    //Moves the runner forward in the direction that it is facing
+    protected void move() {
+        //Move North
+        if (currentDirection == 'N') {
+            y++;
+        }
 
+        //Move South
+        else if (currentDirection == 'S') {
+            y--;
+        }
+
+        //Move East
+        else if (currentDirection == 'E') {
+            x++;
+        }
+
+        //Move West
+        else {
+            x--;
+        }
     }
 
-    public void checkPath() {
+    protected void turnRight() {
+        //East to South
+        if (currentDirection == 'E') {
+            currentDirection = 'S';
+        }
 
+        //South to West
+        else if (currentDirection == 'S') {
+            currentDirection = 'W';
+        }
+
+        //West to North
+        else if (currentDirection == 'W') {
+            currentDirection = 'N';
+        }
+
+        //North to East
+        else {
+            currentDirection = 'E';
+        }
     }
 
-    //Move moves the runner forward
-    public void move() {
+    protected void turnLeft() {
+        //East to North
+        if (currentDirection == 'E') {
+            currentDirection = 'N';
+        }
 
+        //North to West
+        else if (currentDirection == 'N') {
+            currentDirection = 'W';
+        }
+
+        //West to South
+        else if (currentDirection == 'W') {
+            currentDirection = 'S';
+        }
+
+        //South to East
+        else {
+            currentDirection = 'E';
+        }
     }
 
-    //turns the runner (changes direction)
-    public void turn() {
+    //Checks in front depending on direction
+    protected boolean check(String[][] maze) {
+        boolean clear = false;
 
-    }
+        //Check North
+        if (currentDirection == 'N') {
+            if (maze[y + 1][x].equals(" ")) {
+                clear = true;
+            }
+        }
 
-    //Has the if statements changing the current direction based on where the runner turns
-    public void direction() {
+        //Check South
+        else if (currentDirection == 'S') {
+            if (maze[y - 1][x].equals(" ")) {
+                clear = true;
+            }
+        }
 
+        //Check East
+        else if (currentDirection == 'E') {
+            if (maze[y][x + 1].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        //Check West
+        else {
+            if (maze[y][x - 1].equals(" ")) {
+                clear = true;
+            }
+        }
+
+        return clear;
     }
 }

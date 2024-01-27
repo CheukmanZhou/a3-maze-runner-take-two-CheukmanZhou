@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
-
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -12,6 +11,8 @@ public class Main {
         ReadFile read = new ReadFile(args);
         Maze maze = new Maze(read.getInputFile());
         maze.generate();
+        RightHand rightHand = new RightHand(maze);
+        System.out.println(rightHand.navigate());
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
