@@ -1,13 +1,21 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class RightHand implements Algorithm {
+public class RightHand extends Runner implements Algorithm {
     private Maze maze;
     private String[][] mazeLayout;
 
     public RightHand(Maze maze) {
         x = maze.getStartX();
         y = maze.getStartY();
-        currentDirection = 'E';
+
+        if (maze.getReverse() == false) {
+            currentDirection = 'E';
+        }
+
+        else {
+            currentDirection = 'W';
+        }
+        
         this.maze = maze;
         mazeLayout = maze.getMaze();
     }

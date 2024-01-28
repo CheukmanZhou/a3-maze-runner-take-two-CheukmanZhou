@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
         ReadFile read = new ReadFile(args);
-        Maze maze = new Maze(read.getInputFile());
+        Maze maze = new Maze(read.getInputFile(), true);
         maze.generate();
         RightHand rightHand = new RightHand(maze);
         System.out.println(rightHand.navigate());

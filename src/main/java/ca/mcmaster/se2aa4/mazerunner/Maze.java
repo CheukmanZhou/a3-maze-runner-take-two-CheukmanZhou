@@ -16,9 +16,11 @@ public class Maze {
     private int startY;
     private int endX;
     private int endY;
+    private boolean reverse;
 
-    public Maze(String inputFile) {
+    public Maze(String inputFile, boolean reverse) {
         this.inputFile = inputFile;
+        this.reverse = reverse;
     }
 
     public void generate() {
@@ -42,6 +44,16 @@ public class Maze {
                         maze[row][col] = " ";
                     }
                 }
+            }
+
+            if (reverse == false) {
+                startX = 0;
+                endX = width - 1;
+            }
+
+            else {
+                startX = width - 1;
+                endX = 0;
             }
 
             findStart();
@@ -99,10 +111,8 @@ public class Maze {
     }
 
     private void findStart() {
-        startX = 0;
-
         for (int i = 0; i < height; i++) {
-            if (maze[i][0].equals(" ")) {
+            if (maze[i][startX].equals(" ")) {
                 startY = i;
                 break;
             }
@@ -110,10 +120,8 @@ public class Maze {
     }
 
     private void findEnd() {
-        endX = width - 1;
-
         for (int i = 0; i < height; i++) {
-            if (maze[i][width - 1].equals(" ")) {
+            if (maze[i][endX].equals(" ")) {
                 endY = i;
                 break;
             }
@@ -138,5 +146,9 @@ public class Maze {
 
     public int getEndY() {
         return endY;
+    }
+
+    public boolean getReverse() {
+        return reverse;
     }
 }
