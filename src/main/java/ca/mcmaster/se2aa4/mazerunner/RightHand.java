@@ -12,7 +12,7 @@ public class RightHand extends Runner implements Algorithm {
         mazeLayout = maze.getMaze();
     }
 
-    //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until u can move forward
+    //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until you can move forward
     public String navigate() {
         String canonicalPath = "";
 

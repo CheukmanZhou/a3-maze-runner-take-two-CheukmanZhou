@@ -9,12 +9,12 @@ public class Runner {
     protected void move() {
         //Move North
         if (currentDirection == 'N') {
-            y++;
+            y--;
         }
 
         //Move South
         else if (currentDirection == 'S') {
-            y--;
+            y++;
         }
 
         //Move East
@@ -78,14 +78,14 @@ public class Runner {
 
         //Check North
         if (currentDirection == 'N') {
-            if (maze[y + 1][x].equals(" ")) {
+            if (maze[y - 1][x].equals(" ")) {
                 clear = true;
             }
         }
 
         //Check South
         else if (currentDirection == 'S') {
-            if (maze[y - 1][x].equals(" ")) {
+            if (maze[y + 1][x].equals(" ")) {
                 clear = true;
             }
         }
