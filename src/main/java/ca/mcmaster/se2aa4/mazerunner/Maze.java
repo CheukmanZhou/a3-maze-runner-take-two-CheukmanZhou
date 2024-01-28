@@ -16,16 +16,18 @@ public class Maze {
     private int startY;
     private int endX;
     private int endY;
+    private boolean reverse;
 
-    public Maze(String inputFile) {
+    public Maze(String inputFile, boolean reverse) {
         this.inputFile = inputFile;
+        this.reverse = reverse;
     }
 
     public void generate() {
         width = findWidth();
         height = findHeight();
 
-        maze = new String[width][height];
+        maze = new String[height][width];
 
         logger.info("**** Reading the maze from file " + inputFile);
 
@@ -44,23 +46,18 @@ public class Maze {
                 }
             }
 
-            findStart();
-            findEnd();
-
-            ////////////Tester
-            for (int row = 0; row < height; row++) {
-                for (int col = 0; col < width; col++) {
-                    System.out.print(maze[row][col]);
-                }
-                System.out.println();
+            if (reverse == false) {
+                startX = 0;
+                endX = width - 1;
             }
 
-            System.out.println("Start Position: " + startX + ", " + startY);
-            System.out.println("End Position: " + endX + ", " + endY);
+            else {
+                startX = width - 1;
+                endX = 0;
+            }
 
-            //////////////
-
-
+            findStart();
+            findEnd();
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
@@ -99,10 +96,8 @@ public class Maze {
     }
 
     private void findStart() {
-        startX = 0;
-
         for (int i = 0; i < height; i++) {
-            if (maze[i][0].equals(" ")) {
+            if (maze[i][startX].equals(" ")) {
                 startY = i;
                 break;
             }
@@ -110,10 +105,8 @@ public class Maze {
     }
 
     private void findEnd() {
-        endX = width - 1;
-
         for (int i = 0; i < height; i++) {
-            if (maze[i][width - 1].equals(" ")) {
+            if (maze[i][endX].equals(" ")) {
                 endY = i;
                 break;
             }
@@ -138,5 +131,9 @@ public class Maze {
 
     public int getEndY() {
         return endY;
+    }
+
+    public boolean getReverse() {
+        return reverse;
     }
 }

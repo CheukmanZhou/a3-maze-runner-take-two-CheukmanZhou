@@ -3,24 +3,36 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHand extends Runner implements Algorithm {
     private Maze maze;
     private String[][] mazeLayout;
+    private SpaceFormatter formatter = new SpaceFormatter();
+    private String canonicalPath;
+    private String factorizedPath;
+    private FactorizedPath factor = new FactorizedPath();
 
     public RightHand(Maze maze) {
         x = maze.getStartX();
         y = maze.getStartY();
-        currentDirection = 'E';
+
+        if (maze.getReverse() == false) {
+            currentDirection = 'E';
+        }
+
+        else {
+            currentDirection = 'W';
+        }
+        
         this.maze = maze;
         mazeLayout = maze.getMaze();
     }
 
-    //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until u can move forward
+    //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until you can move forward
     public String navigate() {
-        String canonicalPath = "";
+        canonicalPath = "";
 
         while (x != maze.getEndX()) {
             turnRight();
-            canonicalPath = canonicalPath + "R";
             
             if (check(mazeLayout) == true) {
+                canonicalPath = canonicalPath + "R";
                 move();
                 canonicalPath = canonicalPath + "F";
             }
@@ -28,16 +40,30 @@ public class RightHand extends Runner implements Algorithm {
             else {
                 while (true) {
                     turnLeft();
-                    canonicalPath = canonicalPath + "L";
+                    
                     if (check(mazeLayout) == true) {
                         move();
                         canonicalPath = canonicalPath + "F";
                         break;
                     }
+
+                    canonicalPath = canonicalPath + "L";
                 }
             }
         }
 
+        canonicalPath = formatter.format(canonicalPath);
+
+        factorizedPath = factor.convert(canonicalPath);
+
         return canonicalPath;
+    }
+
+    public String getCanonicalPath() {
+        return canonicalPath;
+    }
+
+    public String getFactorizedPath() {
+        return factorizedPath;
     }
 }

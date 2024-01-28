@@ -9,12 +9,12 @@ public class Runner {
     protected void move() {
         //Move North
         if (currentDirection == 'N') {
-            y++;
+            y--;
         }
 
         //Move South
         else if (currentDirection == 'S') {
-            y--;
+            y++;
         }
 
         //Move East
@@ -72,20 +72,20 @@ public class Runner {
         }
     }
 
-    //Checks in front depending on direction
+    //Checks if clear in front depending on direction
     protected boolean check(String[][] maze) {
         boolean clear = false;
 
         //Check North
         if (currentDirection == 'N') {
-            if (maze[y + 1][x].equals(" ")) {
+            if (maze[y - 1][x].equals(" ")) {
                 clear = true;
             }
         }
 
         //Check South
         else if (currentDirection == 'S') {
-            if (maze[y - 1][x].equals(" ")) {
+            if (maze[y + 1][x].equals(" ")) {
                 clear = true;
             }
         }
