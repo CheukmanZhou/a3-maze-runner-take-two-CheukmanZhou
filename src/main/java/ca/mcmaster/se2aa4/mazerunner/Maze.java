@@ -27,7 +27,7 @@ public class Maze {
         width = findWidth();
         height = findHeight();
 
-        maze = new String[width][height];
+        maze = new String[height][width];
 
         logger.info("**** Reading the maze from file " + inputFile);
 
