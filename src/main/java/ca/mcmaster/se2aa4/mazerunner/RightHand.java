@@ -3,6 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHand extends Runner implements Algorithm {
     private Maze maze;
     private String[][] mazeLayout;
+    private SpaceFormatter formatter = new SpaceFormatter();
 
     public RightHand(Maze maze) {
         x = maze.getStartX();
@@ -48,6 +49,6 @@ public class RightHand extends Runner implements Algorithm {
             }
         }
 
-        return canonicalPath;
+        return formatter.format(canonicalPath);
     }
 }
