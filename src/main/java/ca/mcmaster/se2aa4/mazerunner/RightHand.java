@@ -4,6 +4,9 @@ public class RightHand extends Runner implements Algorithm {
     private Maze maze;
     private String[][] mazeLayout;
     private SpaceFormatter formatter = new SpaceFormatter();
+    private String canonicalPath;
+    private String factorizedPath;
+    private FactorizedPath factor = new FactorizedPath();
 
     public RightHand(Maze maze) {
         x = maze.getStartX();
@@ -23,7 +26,7 @@ public class RightHand extends Runner implements Algorithm {
 
     //Algorithm: Turn right, check forward, if forward is clear move forward, else turn left and check forward, and keep turning left and checking forward if forward not clear until you can move forward
     public String navigate() {
-        String canonicalPath = "";
+        canonicalPath = "";
 
         while (x != maze.getEndX()) {
             turnRight();
@@ -49,6 +52,18 @@ public class RightHand extends Runner implements Algorithm {
             }
         }
 
-        return formatter.format(canonicalPath);
+        canonicalPath = formatter.format(canonicalPath);
+
+        factorizedPath = factor.convert(canonicalPath);
+
+        return canonicalPath;
+    }
+
+    public String getCanonicalPath() {
+        return canonicalPath;
+    }
+
+    public String getFactorizedPath() {
+        return factorizedPath;
     }
 }
