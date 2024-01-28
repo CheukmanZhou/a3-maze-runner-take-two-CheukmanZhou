@@ -72,7 +72,7 @@ public class Runner {
         }
     }
 
-    //Checks in front depending on direction
+    //Checks if clear in front depending on direction
     protected boolean check(String[][] maze) {
         boolean clear = false;
 

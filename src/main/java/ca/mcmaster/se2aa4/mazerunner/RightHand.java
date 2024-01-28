@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class RightHand extends Runner implements Algorithm {
+public class RightHand implements Algorithm {
     private Maze maze;
     private String[][] mazeLayout;
 
