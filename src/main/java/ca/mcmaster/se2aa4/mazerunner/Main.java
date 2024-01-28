@@ -24,7 +24,7 @@ public class Main {
 
         CheckPath checkPath = new CheckPath();
 
-        //System.out.println(checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
+        System.out.println(checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
 
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
