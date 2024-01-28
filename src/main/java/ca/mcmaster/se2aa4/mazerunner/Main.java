@@ -10,24 +10,35 @@ public class Main {
         logger.info("** Starting Maze Runner");
         ReadFile read = new ReadFile(args);
         
+        //Regular Path
         Maze mazeReg = new Maze(read.getInputFile(), false);
         mazeReg.generate();
         RightHand reg = new RightHand(mazeReg);
-        System.out.println(reg.navigate());
-        System.out.println(reg.getFactorizedPath());
 
+        //Reverse Path
         Maze mazeRev = new Maze(read.getInputFile(), true);
         mazeRev.generate();
         RightHand rev = new RightHand(mazeRev);
+        
+        logger.info("**** Computing path");
+        
+        System.out.println("\nRegular Path:");
+        System.out.println(reg.navigate());
+        System.out.println(reg.getFactorizedPath());
+
+        System.out.println("\nReverse Path:");
         System.out.println(rev.navigate());
         System.out.println(rev.getFactorizedPath());
 
-        CheckPath checkPath = new CheckPath();
+        if (read.getPath() != "") {
+            CheckPath checkPath = new CheckPath();
+            System.out.println("\n" + checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
+        }
 
-        System.out.println(checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
+        else {
+            System.out.println();
+        }
 
-        logger.info("**** Computing path");
-        logger.info("PATH NOT COMPUTED");
-        logger.info("** End of MazeRunner");
+        logger.info("** End of Maze Runner");
     }
 }
