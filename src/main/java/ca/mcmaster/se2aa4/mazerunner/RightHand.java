@@ -52,9 +52,9 @@ public class RightHand extends Runner implements Algorithm {
             }
         }
 
-        canonicalPath = formatter.format(canonicalPath);
+        //canonicalPath = formatter.format(canonicalPath);
 
-        factorizedPath = factor.convert(canonicalPath);
+        //factorizedPath = factor.convert(canonicalPath);
 
         return canonicalPath;
     }

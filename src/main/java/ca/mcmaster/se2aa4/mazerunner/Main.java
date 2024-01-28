@@ -14,17 +14,17 @@ public class Main {
         mazeReg.generate();
         RightHand reg = new RightHand(mazeReg);
         System.out.println(reg.navigate());
-        System.out.println(reg.getFactorizedPath());
+        //System.out.println(reg.getFactorizedPath());
 
         Maze mazeRev = new Maze(read.getInputFile(), true);
         mazeRev.generate();
         RightHand rev = new RightHand(mazeRev);
         System.out.println(rev.navigate());
-        System.out.println(rev.getFactorizedPath());
+        //System.out.println(rev.getFactorizedPath());
 
         CheckPath checkPath = new CheckPath();
 
-        System.out.println(checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
+        //System.out.println(checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
 
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
