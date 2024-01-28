@@ -13,6 +13,7 @@ public class Main {
         maze.generate();
         RightHand rightHand = new RightHand(maze);
         System.out.println(rightHand.navigate());
+        System.out.println(rightHand.getFactorizedPath());
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
