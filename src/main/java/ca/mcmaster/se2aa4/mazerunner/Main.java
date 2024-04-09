@@ -1,13 +1,13 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+// import org.apache.logging.log4j.LogManager;
+// import org.apache.logging.log4j.Logger;
 
 public class Main {
-    private static final Logger logger = LogManager.getLogger();
+    //private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
-        logger.info("** Starting Maze Runner");
+        //logger.info("** Starting Maze Runner");
         ReadFile read = new ReadFile(args);
         
         //Regular Path
@@ -20,25 +20,16 @@ public class Main {
         mazeRev.generate();
         RightHand rev = new RightHand(mazeRev);
         
-        logger.info("**** Computing path");
+        //logger.info("**** Computing path");
         
-        System.out.println("\nRegular Path:");
-        System.out.println(reg.navigate());
+        reg.navigate();
         System.out.println(reg.getFactorizedPath());
-
-        System.out.println("\nReverse Path:");
-        System.out.println(rev.navigate());
-        System.out.println(rev.getFactorizedPath());
 
         if (read.getPath() != "") {
             CheckPath checkPath = new CheckPath();
             System.out.println("\n" + checkPath.check(reg.getCanonicalPath(), reg.getFactorizedPath(), rev.getCanonicalPath(), rev.getFactorizedPath(), read.getPath()));
         }
 
-        else {
-            System.out.println();
-        }
-
-        logger.info("** End of Maze Runner");
+        //logger.info("** End of Maze Runner");
     }
 }

@@ -29,7 +29,7 @@ public class Maze {
 
         maze = new String[height][width];
 
-        logger.info("**** Reading the maze from file " + inputFile);
+        //logger.info("**** Reading the maze from file " + inputFile);
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -58,6 +58,8 @@ public class Maze {
 
             findStart();
             findEnd();
+
+            reader.close();
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
         }
@@ -70,6 +72,8 @@ public class Maze {
 
             line = reader.readLine();
 
+            reader.close();
+
             return line.length();
         } catch (Exception e) {
             logger.error("/!\\ An error has occurred /!\\");
@@ -80,13 +84,14 @@ public class Maze {
     private int findHeight() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            String line;
 
             int height = 0;
 
-            while ((line = reader.readLine()) != null) {
+            while ((reader.readLine()) != null) {
                 height++;
             }
+
+            reader.close();
 
             return height;
         } catch (Exception e) {
