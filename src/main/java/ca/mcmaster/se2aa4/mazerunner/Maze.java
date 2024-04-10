@@ -119,10 +119,6 @@ public class Maze {
         return this.maze.size();
     }
 
-    public List<List<Boolean>> getMaze() {
-        return maze;
-    }
-
     /**
      * Check if path is valid for Maze.
      *

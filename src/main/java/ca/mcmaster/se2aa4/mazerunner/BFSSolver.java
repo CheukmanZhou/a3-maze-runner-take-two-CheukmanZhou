@@ -7,5 +7,4 @@ public class BFSSolver implements MazeSolver {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'solve'");
     }
-    
 }
