@@ -1,26 +1,11 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Node {
-    private Position position;
-    private List<Node> neighbors;
+    Position position; // Position in the maze
+    Node parent; // Parent node in the path
 
-    public Node(Position position) {
+    Node(Position position, Node parent) {
         this.position = position;
-        this.neighbors = new ArrayList<>();
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void addNeighbor(Node neighbor) {
-        neighbors.add(neighbor);
-    }
-
-    public List<Node> getNeighbors() {
-        return neighbors;
+        this.parent = parent;
     }
 }
