@@ -16,12 +16,14 @@ public class Main {
         try {
             cmd = parser.parse(getParserOptions(), args);
             String filePath = cmd.getOptionValue('i');
-            Maze maze = new Maze(filePath);
+            Maze2DArrayListExporter exporter = new Maze2DArrayListExporter();
+            Maze maze = exporter.createMaze(filePath);
+            PathValidator verifier = new PathValidator(maze);
 
             if (cmd.getOptionValue("p") != null) {
                 logger.info("Validating path");
                 Path path = new Path(cmd.getOptionValue("p"));
-                if (maze.validatePath(path)) {
+                if (verifier.validatePath(path)) {
                     System.out.println("correct path");
                 } else {
                     System.out.println("incorrect path");
