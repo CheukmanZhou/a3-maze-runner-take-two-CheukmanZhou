@@ -15,7 +15,7 @@ public class Maze2DArrayListExporter implements MazeExporter {
     private final List<List<Boolean>> maze2DArrayList = new ArrayList<>();
 
     /**
-     * Initialize a Maze from a file path.
+     * Creates a Maze in a 2D ArrayList format from a file path.
      *
      * @param filePath File path of the maze file
      * @throws Exception If maze cannot be read, or maze has no start or end

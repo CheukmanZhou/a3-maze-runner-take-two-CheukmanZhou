@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
-
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Main {
         try {
             cmd = parser.parse(getParserOptions(), args);
             String filePath = cmd.getOptionValue('i');
-            Maze2DArrayListExporter exporter = new Maze2DArrayListExporter();
+            MazeExporter exporter = new Maze2DArrayListExporter();
             Maze maze = exporter.createMaze(filePath);
             PathValidator verifier = new PathValidator(maze);
 

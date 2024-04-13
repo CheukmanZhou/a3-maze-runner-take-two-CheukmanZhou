@@ -11,45 +11,39 @@ import java.util.Set;
 public class BFSSolver implements MazeSolver {
     @Override
     public Path solve(Maze maze) {
-        // Initialize the queue for BFS
-        Queue<Node> queue = new LinkedList<>();
-        // Initialize a set to keep track of visited positions
-        Set<Position> visited = new HashSet<>();
-        // Initialize the starting position
+        Queue<Node> queue = new LinkedList<>(); //Initialize queue for BFS
+        Set<Position> visited = new HashSet<>(); //Initialize set to keep track of visited positions
+        
         Position start = maze.getStart();
-        // Add the starting position to the queue
-        queue.offer(new Node(start, null));
+        queue.offer(new Node(start, null)); //Add the start position to the queue
 
-        // Perform BFS
+        //Perform BFS
         while (!queue.isEmpty()) {
-            // Get the current node from the queue
-            Node current = queue.poll();
-            // Check if we have reached the exit
+            Node current = queue.poll(); //Get the current node from the queue
+            
+            //Check if we have reached the exit
             if (current.position.equals(maze.getEnd())) {
-                return reconstructPath(current, start); // Return the reconstructed path to the exit
+                return reconstructPath(current, start); //Return the reconstructed path to the exit
             }
-            // Mark the current position as visited
-            visited.add(current.position);
-            // Explore neighbors of the current position
+            
+            visited.add(current.position); //Mark current position as visited
+            
+            //Explore neighbors of the current position
             for (Direction dir : Direction.values()) {
-                // Calculate the neighbor position
                 Position neighbor = current.position.move(dir);
-                // Check if the neighbor position is within the maze and not a wall
+                
+                //Check if the neighbor position is within the maze and not a wall
                 if (isValidPosition(maze, neighbor) && !visited.contains(neighbor)) {
-                    // Add the neighbor position to the queue
-                    queue.offer(new Node(neighbor, current));
+                    queue.offer(new Node(neighbor, current)); //Add neighbor position to queue
                 }
             }
         }
-        // If no path to the exit is found, return null
-        return null;
+        
+        return null; //If no path to the exit is found, return null
     }
 
-    // Helper method to check if a position is valid (within the maze boundaries and not a wall)
     private boolean isValidPosition(Maze maze, Position pos) {
-        return pos.getX() >= 0 && pos.getY() >= 0 &&
-                pos.getX() < maze.getSizeX() && pos.getY() < maze.getSizeY() &&
-                !maze.isWall(pos);
+        return pos.getX() >= 0 && pos.getY() >= 0 && pos.getX() < maze.getSizeX() && pos.getY() < maze.getSizeY() && !maze.isWall(pos);
     }
 
     private Path reconstructPath(Node endNode, Position start) {
