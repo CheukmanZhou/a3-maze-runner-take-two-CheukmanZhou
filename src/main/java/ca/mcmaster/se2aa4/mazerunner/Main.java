@@ -27,7 +27,17 @@ public class Main {
                 } else {
                     System.out.println("incorrect path");
                 }
-            } else {
+            }
+            
+            else if (cmd.getOptionValue("baseline") != null) {
+                logger.info("Benchmark mode");
+                String method = cmd.getOptionValue("method", "righthand");
+                String baseline = cmd.getOptionValue("baseline");
+                Benchmark benchmark = new Benchmark(filePath, method, baseline);
+                benchmark.run();
+            }
+
+            else {
                 String method = cmd.getOptionValue("method", "righthand");
                 Path path = solveMaze(method, maze);
                 System.out.println(path.getFactorizedForm());
@@ -87,6 +97,7 @@ public class Main {
 
         options.addOption(new Option("p", true, "Path to be verified in maze"));
         options.addOption(new Option("method", true, "Specify which path computation algorithm will be used"));
+        options.addOption(new Option("baseline", true, "Algorithm to be used as baseline for benchmark mode"));
 
         return options;
     }
