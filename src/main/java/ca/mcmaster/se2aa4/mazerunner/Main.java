@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
-
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -16,17 +15,29 @@ public class Main {
         try {
             cmd = parser.parse(getParserOptions(), args);
             String filePath = cmd.getOptionValue('i');
-            Maze maze = new Maze(filePath);
+            MazeExporter exporter = new Maze2DArrayListExporter();
+            Maze maze = exporter.createMaze(filePath);
+            PathValidator verifier = new PathValidator(maze);
 
             if (cmd.getOptionValue("p") != null) {
                 logger.info("Validating path");
                 Path path = new Path(cmd.getOptionValue("p"));
-                if (maze.validatePath(path)) {
+                if (verifier.validatePath(path)) {
                     System.out.println("correct path");
                 } else {
                     System.out.println("incorrect path");
                 }
-            } else {
+            }
+            
+            else if (cmd.getOptionValue("baseline") != null) {
+                logger.info("Benchmark mode");
+                String method = cmd.getOptionValue("method", "righthand");
+                String baseline = cmd.getOptionValue("baseline");
+                Benchmark benchmark = new Benchmark(filePath, method, baseline);
+                benchmark.run();
+            }
+
+            else {
                 String method = cmd.getOptionValue("method", "righthand");
                 Path path = solveMaze(method, maze);
                 System.out.println(path.getFactorizedForm());
@@ -59,6 +70,10 @@ public class Main {
                 logger.debug("Tremaux algorithm chosen.");
                 solver = new TremauxSolver();
             }
+            case "bfs" -> {
+                logger.debug("BFS algorithm chosen.");
+                solver = new BFSSolver();
+            }
             default -> {
                 throw new Exception("Maze solving method '" + method + "' not supported.");
             }
@@ -82,6 +97,7 @@ public class Main {
 
         options.addOption(new Option("p", true, "Path to be verified in maze"));
         options.addOption(new Option("method", true, "Specify which path computation algorithm will be used"));
+        options.addOption(new Option("baseline", true, "Algorithm to be used as baseline for benchmark mode"));
 
         return options;
     }

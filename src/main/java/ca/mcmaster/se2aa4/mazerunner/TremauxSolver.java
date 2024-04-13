@@ -165,7 +165,6 @@ public class TremauxSolver implements MazeSolver {
             }
         }
 
-
         return path;
     }
 

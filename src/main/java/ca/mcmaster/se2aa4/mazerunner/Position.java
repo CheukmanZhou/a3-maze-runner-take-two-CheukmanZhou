@@ -39,4 +39,31 @@ public record Position(int x, int y) {
     public String toString() {
         return "Position(" + this.x + "," + this.y + ")";
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Position check(Direction direction) {
+        Position checkPosition = new Position(x, y);
+        switch (direction) {
+            case UP -> {
+                return checkPosition.add(new Position(0, -1));
+            }
+            case DOWN -> {
+                return checkPosition.add(new Position(0, 1));
+            }
+            case LEFT -> {
+                return checkPosition.add(new Position(-1, 0));
+            }
+            case RIGHT -> {
+                return checkPosition.add(new Position(1, 0));
+            }
+        }
+        throw new IllegalStateException("Unexpected value: " + this);
+    }
 }

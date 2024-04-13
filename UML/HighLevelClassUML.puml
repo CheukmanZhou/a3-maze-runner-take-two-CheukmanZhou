@@ -1,0 +1,61 @@
+@startuml HighLevelClassUML
+class Main
+interface MazeExporter
+class Maze2DArrayListExporter
+interface Maze
+class Maze2DArrayList
+class Position <<record>>
+class Path
+class PathValidator
+interface MazeSolver
+enum Direction
+class RightHandSolver
+class TremauxSolver
+class BFSSolver
+class Node
+
+
+Main --> MazeExporter
+Main o--> Maze
+Main --> Path
+Main o--> MazeSolver
+Main --> PathValidator
+
+MazeExporter <|.. Maze2DArrayListExporter
+
+Maze2DArrayListExporter *--> Maze2DArrayList
+
+Maze <|.. Maze2DArrayList
+
+Maze2DArrayList --> Position
+
+PathValidator --> Path
+PathValidator --> Direction
+PathValidator --> Position
+PathValidator --> Maze
+
+MazeSolver <|.. RightHandSolver
+MazeSolver <|.. TremauxSolver
+MazeSolver <|.. BFSSolver
+
+Maze <--* RightHandSolver
+Maze <--* TremauxSolver
+Maze <--* BFSSolver
+
+RightHandSolver --> Direction
+RightHandSolver --> Path
+RightHandSolver --> Position
+
+TremauxSolver --> Direction
+TremauxSolver --> Path
+TremauxSolver --> Position
+
+BFSSolver --> Direction
+BFSSolver --> Path
+BFSSolver --> Position
+BFSSolver --> Node
+
+Node --> Position
+
+Position --> Direction
+@enduml
