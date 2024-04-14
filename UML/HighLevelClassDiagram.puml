@@ -1,4 +1,4 @@
-@startuml HighLevelClassUML
+@startuml HighLevelClassDiagram
 class Main
 interface MazeExporter
 class Maze2DArrayListExporter
