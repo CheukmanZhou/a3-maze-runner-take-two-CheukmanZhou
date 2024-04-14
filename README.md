@@ -1,10 +1,11 @@
-# Assignment A1 - Maze Runner
+# Assignment A3 - Maze Runner, Take Two
 
-* **Student**: [FIRSTNAME LASTNAME](MACID@mcmaster.ca)
+* **Student**: [Cheukman Zhou](zhouc98@mcmaster.ca)
 * **Program**: B. Eng. In Software Engineering
 * **Course code**: SFWRENG 2AA4
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
+* **Author of Original Code**: Alexandre Lachance
 
 ## Business Logic Specification
 
@@ -25,51 +26,15 @@ This program explores a maze, finding a path from an entry point to an exit one.
 - A factorized path squashes together similar instructions (i.e., `FFF` = `3F`, `LL` = `2L`).
 - Spaces are ignored in the instruction sequence (only for readability: `FFLFF` = `FF L FF`)
 - The program takes as input a maze and print the path on the standard output.
-    - For this assignment, the path does not have to be the shortest one.
 - The program can take a path as input and verify if it's a legit one.
+- The program can benchmark between two given algorithms: one being the baseline algorithm and the other being the method you want to solve the maze by. 
 
 ## How to run this software?
 
 To build the program, simply package it with Maven:
 
 ```
-mosser@azrael A1-Template % mvn -q clean package 
-```
-
-### Provided version (starter code)
-
-The starter code assumes the maze file name is the first argument.
-
-```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar ./examples/small.maz.txt
-** Starting Maze Runner
-**** Reading the maze from file ./examples/small.maz.txt
-WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL 
-WALL PASS PASS PASS PASS PASS PASS PASS PASS PASS WALL 
-WALL WALL WALL PASS WALL WALL WALL PASS WALL WALL WALL 
-WALL PASS PASS PASS PASS PASS WALL PASS PASS PASS WALL 
-WALL PASS WALL PASS WALL WALL WALL WALL WALL PASS WALL 
-WALL PASS WALL PASS PASS PASS PASS PASS WALL PASS PASS 
-WALL WALL WALL PASS WALL PASS WALL WALL WALL WALL WALL 
-WALL PASS PASS PASS WALL PASS PASS PASS PASS PASS WALL 
-PASS PASS WALL PASS WALL PASS WALL WALL WALL PASS WALL 
-WALL PASS WALL PASS WALL PASS WALL PASS PASS PASS WALL 
-WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL 
-**** Computing path
-PATH NOT COMPUTED
-** End of MazeRunner
-```
-
-When called on a non-existing file. it prints an error message
-
-```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar ./examples/small.maz.txtd
-** Starting Maze Runner
-**** Reading the maze from file ./examples/small.maz.txtd
-/!\ An error has occured /!\
-**** Computing path
-PATH NOT COMPUTED
-** End of MazeRunner
+mosser@azrael A3-Template % mvn -q clean package 
 ```
 
 ### Delivered version
@@ -80,34 +45,53 @@ The delivered program at the end of this assignment should use the following fla
 
 - `-i MAZE_FILE`: specifies the filename to be used;
 - `-p PATH_SEQUENCE`: activates the path verification mode to validate that PATH_SEQUENCE is correct for the maze
-
-If you are also delivering the bonus, your program will react to a third flag:
-
-- `-method {tremaux, righthand}`: specifies which path computation method to use. (default is right hand)
+- `-method {tremaux, righthand, bfs}`: specifies which path computation method to use. (default is right hand)
+- `-baseline {tremaux, righthand, bfs}`: specifies which path computation method to use in benchmark mode. (default is right hand)
 
 #### Examples
 
 When no logs are activated, the programs only print the computed path on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt
+mosser@azrael A3-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt
 4F
-mosser@azrael A1-Template %
+mosser@azrael A3-Template %
 ```
 
 If a given path is correct, the program prints the message `correct path` on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 4F
+mosser@azrael A3-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 4F
 correct path
-mosser@azrael A1-Template %
+mosser@azrael A3-Template %
 ```
 
 If a given path is incorrect, the program prints the message `incorrect path` on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 3F
+mosser@azrael A3-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 3F
 inccorrect path
-mosser@azrael A1-Template %
+mosser@azrael A3-Template %
 ```
 
+If a method is given, the program would print the computed path using that algorithm on the standard output.
+
+```
+mosser@azrael A3-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method bfs
+4F
+mosser@azrael A3-Template %
+```
+
+If a baseline algorithm is given, it would run in benchmark mode and would use the `-method` entered as the method algorithm (default is right hand) and the `-baseline` as the baseline algorithm. It would print the time spent loading the maze from file in milliseconds, time spent exploring the maze using the method algorithm in milliseconds, the time spent exploring the maze using the baseline algorithm in milliseconds, and the speedup between the two algorithms.
+
+```
+mosser@azrael A3-Template % java -jar target/mazerunner.jar -i ./examples/huge.maz.txt -method bfs -baseline righthand
+Time Spent Loading Maze from File: 2 milliseconds
+
+Time Spent Exploring Maze with Provided Method: 34 milliseconds
+
+Time Spent Exploring Maze with Provided Baseline: 285 milliseconds
+
+Speedup: 35
+mosser@azrael A3-Template %
+```
