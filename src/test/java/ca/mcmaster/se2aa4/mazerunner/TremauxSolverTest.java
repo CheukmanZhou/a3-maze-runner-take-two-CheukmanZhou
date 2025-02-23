@@ -1,10 +1,10 @@
 package ca.mcmaster.se2aa4.mazerunner;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
-public class BFSSolverTest {
+public class TremauxSolverTest {
     MazeExporter exporter = new Maze2DArrayListExporter();
-    MazeSolver solver = new BFSSolver();
+    MazeSolver solver = new TremauxSolver();
     
     @Test
     void solveStraightMazeTest() throws Exception {
@@ -16,7 +16,6 @@ public class BFSSolverTest {
 
         assertEquals("4F", path.getFactorizedForm());
     }
-    
     
     @Test
     void solveSmallMazeTest() throws Exception {
