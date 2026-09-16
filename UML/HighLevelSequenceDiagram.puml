@@ -1,0 +1,23 @@
+@startuml HighLevelSequenceDiagram
+participant Main
+participant Maze
+participant MazeExporter
+participant MazeSolver
+participant RightHandSolver
+participant TremauxSolver
+participant BFSSolver
+
+Main -> Main: Parse command-line arguments
+Main -> MazeExporter: createMaze(filePath)
+MazeExporter -> Maze: getStart(), getEnd(), isWall(), getSizeX(), getSizeY()
+Main -> MazeSolver: solveMaze(method, maze)
+MazeSolver -> RightHandSolver: solve(maze) \n(method = "righthand")
+MazeSolver -> TremauxSolver: solve(maze) \n(method = "tremaux")
+MazeSolver -> BFSSolver: solve(maze) \n(method = "bfs")
+RightHandSolver -> Maze: getStart(), getEnd(), isWall(), getSizeX(), getSizeY()
+TremauxSolver -> Maze: getStart(), getEnd(), isWall(), getSizeX(), getSizeY()
+BFSSolver -> Maze: getStart(), getEnd(), isWall(), getSizeX(), getSizeY()
+Main <-- RightHandSolver: Path
+Main <-- TremauxSolver: Path
+Main <-- BFSSolver: Path
+@enduml
